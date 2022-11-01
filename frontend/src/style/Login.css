@@ -1,0 +1,110 @@
+.card {
+  width: 100%;
+  text-align: center;
+  height: 100%;
+}
+
+.image-container {
+  border-top: 2px solid rgb(216, 194, 194);
+  border-bottom: 2px solid rgb(216, 194, 194);
+  border-left: 2px solid rgb(216, 194, 194);
+  padding: 170px;
+  box-sizing: border-box;
+  background-color: white;
+
+}
+#root {
+  background-color: #f4f6f8;
+}
+
+.card-body-center {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  flex: 1 1 auto;
+}
+
+.form {
+  position: relative;
+  padding: 170px;
+  width: 300px;
+  border-top: 2px solid rgb(216, 194, 194);
+  border-bottom: 2px solid rgb(216, 194, 194);
+  border-right: 2px solid rgb(216, 194, 194);
+  background-color: white;
+}
+
+.form-titl {
+  font-size: 50px;
+  font-family: sans-serif;
+  margin-top: 0px;
+  position: absolute;
+  left: 200px;
+  top: 100px;
+}
+
+.form-container-usernam {
+  margin-top: 70px;
+  font-size: 30px;
+}
+
+.form-contro1 {
+  width: 550px;
+  height: 70px;
+  margin-bottom: 20px;
+  border: 2px solid #ced4da;
+  border-radius: 5px;
+  position: absolute;
+  left: 0;
+  font-size: 25px;
+  font-family: sans-serif;
+  outline: none;
+}
+
+.form-contro2 {
+  width: 550px;
+  height: 70px;
+  margin-bottom: 20px;
+  border: 2px solid #ced4da;
+  border-radius: 5px;
+  position: absolute;
+  left: 0;
+  bottom: 180px;
+  font-size: 25px;
+  font-family: sans-serif;
+  outline: none;
+}
+
+.form-contro1:focus {
+  border: 4px solid #1581ee;
+}
+
+.form-contro2:focus {
+  border: 4px solid #1581ee;
+}
+
+.button-primary {
+  width: 560px;
+  height: 70px;
+  border: 2px solid #0d6efd;
+  border-radius: 5px;
+  position: absolute;
+  left: 0;
+  bottom: 80px;
+  font-size: 25px;
+  font-family: sans-serif;
+}
+
+.button-primary:hover {
+  background-color:  #0d6efd;
+}
+
+.local-image {
+  width: 300px;
+  border-radius: 50%;
+}
+
+.text-footer {
+  font-size: 25px;
+  line-height: 7rem;
+}

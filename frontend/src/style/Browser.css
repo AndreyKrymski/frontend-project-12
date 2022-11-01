@@ -1,0 +1,23 @@
+:root {
+  background-color: '#f4f6f8',
+}
+.nav-link {
+  color: rgb(94, 86, 86);
+  font-size: 30px;
+  font-family: sans-serif;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.container {
+  max-height: 200px;
+  width: auto;
+  margin: 0px 40px;
+}
+
+.navbar-nav {
+  border-bottom: 2px solid rgb(190, 167, 167);
+  max-height: 100px;
+  border-radius: 5px;
+  background-color: white;
+}
