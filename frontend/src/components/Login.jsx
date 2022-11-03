@@ -14,7 +14,7 @@ const Login = () => {
   const [isValidName, setIsValidName] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(false);
   const schema = yup.object().shape({
-    username: yup.string().required(),
+    username: yup.string().required('обязательно'),
     password: yup.mixed().required(),
   });
 
