@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router, Link, Routes, Route, Navigate,
 } from 'react-router-dom';
@@ -7,16 +7,16 @@ import NotFound from './NotFound.jsx';
 import Login from './Login.jsx';
 import '../style/Browser.css';
 import SingUp from './SingUp.jsx';
+import useAuth from '../hooks/thisContext.js';
+import Chat from './Chat.jsx';
 
 const BrowserRouter = () => {
-  useEffect(() => {
-    <Navigate to="/login" state={{ from: 'location:3000' }} />;
-  }, []);
+  const auth = useAuth();
   return (
     <Router>
       <Navbar>
         <Nav>
-          <Nav.Link as={Link} to="/login">
+          <Nav.Link as={Link} to={auth.logged ? null : '/login'}>
             <div className="container">
               <div className="nav-link">
                 Hexlet Chat
@@ -26,7 +26,7 @@ const BrowserRouter = () => {
         </Nav>
       </Navbar>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={!auth.logged ? <Navigate to="/login" /> : <Chat />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SingUp />} />
         <Route path="*" element={<NotFound />} />

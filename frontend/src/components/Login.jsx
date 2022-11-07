@@ -1,22 +1,22 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useFormik } from 'formik';
 import cn from 'classname';
-import * as yup from 'yup';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import routers from '../routes.js';
 import '../style/Login.css';
 import local from '../images/local.jpg';
+import useAuth from '../hooks/thisContext.js';
 
 const Login = () => {
+  const [authorization, setAuthorization] = useState(false);
+  const navigate = useNavigate();
   const inputUsername = useRef();
+
   useEffect(() => {
     inputUsername.current.focus();
-  });
-
-  const [isValidName, setIsValidName] = useState(false);
-  const [isValidPassword, setIsValidPassword] = useState(false);
-  const schema = yup.object().shape({
-    username: yup.string().required('обязательно'),
-    password: yup.mixed().required(),
-  });
+  }, []);
+  const auth = useAuth();
 
   const formik = useFormik({
     initialValues: {
@@ -25,12 +25,19 @@ const Login = () => {
     },
     onSubmit: async (values) => {
       try {
-        const validValues = await schema.validate(values);
-        console.log(validValues);
-      } catch (e) {
-        console.log(e);
-        setIsValidName(true);
-        setIsValidPassword(true);
+        const responce = await axios.post(routers.login(), values);
+        setAuthorization(false);
+        localStorage.setItem('userId', JSON.stringify(responce.data));
+        auth.logIn();
+        const { from } = { from: { pathname: '/' } };
+        navigate(from);
+      } catch (err) {
+        inputUsername.current.select();
+        if (err.isAxiosError && err.response.status === 401) {
+          setAuthorization(true);
+          return;
+        }
+        throw err;
       }
     },
   });
@@ -52,7 +59,7 @@ const Login = () => {
                 required=""
                 placeholder="Ваш ник"
                 id="username"
-                className={cn('form-contro1', { 'input-control1': isValidName })}
+                className={cn('form-contro1', { 'is-invalid': authorization })}
                 value={formik.values.username}
                 ref={inputUsername}
               />
@@ -66,9 +73,10 @@ const Login = () => {
                 placeholder="Пароль"
                 type="password"
                 id="password"
-                className={cn('form-contro2', { 'input-control2': isValidPassword })}
+                className={cn('form-contro2', { 'is-invalid': authorization })}
                 value={formik.values.password}
               />
+              {authorization && <p className="err">Неверные имя пользователя или пароль</p>}
             </div>
             <button type="submit" className="button-primary">Войти</button>
           </form>
