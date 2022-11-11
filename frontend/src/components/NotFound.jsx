@@ -19,7 +19,7 @@ const NotFound = () => {
       <h1 className="h4 text-muted" style={{ fontSize: '50px' }}>Страница не найдена</h1>
       <p className="text-muted" style={{ fontSize: '25px' }}>
         Но вы можете перейти
-        <a href="/login"> на главную страницу</a>
+        <a href="/"> на главную страницу</a>
       </p>
     </div>
   );

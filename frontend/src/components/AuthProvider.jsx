@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import Contexts from '../contexts/index.js';
 
 const AuthProvider = ({ children }) => {
-  const [logged, setLogged] = useState(false);
+  const [logged, setLogged] = useState(!!localStorage.userId);
   const logIn = () => setLogged(true);
   const logOut = () => {
     localStorage.removeItem('userId');

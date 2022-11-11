@@ -29,8 +29,7 @@ const Login = () => {
         setAuthorization(false);
         localStorage.setItem('userId', JSON.stringify(responce.data));
         auth.logIn();
-        const { from } = { from: { pathname: '/' } };
-        navigate(from);
+        navigate('/');
       } catch (err) {
         inputUsername.current.select();
         if (err.isAxiosError && err.response.status === 401) {
