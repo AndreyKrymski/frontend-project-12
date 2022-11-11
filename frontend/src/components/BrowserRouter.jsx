@@ -16,17 +16,24 @@ const BrowserRouter = () => {
     <Router>
       <Navbar>
         <Nav>
-          <Nav.Link as={Link} to={auth.logged ? null : '/login'}>
+          <Nav.Link as={Link} to={localStorage.userId ? null : '/login'}>
             <div className="container">
               <div className="nav-link">
                 Hexlet Chat
               </div>
+              {localStorage.userId
+                ? (
+                  <div>
+                    <button onClick={() => auth.logOut()} type="submit" className="input-logOut">Выйти</button>
+                  </div>
+                )
+                : <div />}
             </div>
           </Nav.Link>
         </Nav>
       </Navbar>
       <Routes>
-        <Route path="/" element={!auth.logged ? <Navigate to="/login" /> : <Chat />} />
+        <Route path="/" element={localStorage.userId ? <Chat /> : <Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SingUp />} />
         <Route path="*" element={<NotFound />} />
