@@ -1,27 +1,23 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { messages } from '../slices/channelsSlice';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import useAuth from '../hooks/thisContext.js';
 import TitleChanel from './TitleChanel';
+import Message from './input/Message.jsx';
 
 const Messages = () => {
+  const { socket } = useAuth();
+  console.log(socket);
+
   const data = useSelector((state) => state.channels);
   console.log(data);
-  const newMessages = data.messages.filter((item) => item.id === data.currentChannelId);
-  const [textInput, getTextInput] = useState('');
-  const dispatch = useDispatch();
-  const setMessages = (e) => {
-    e.preventDefault();
-    dispatch(messages(textInput));
-    getTextInput('');
-  };
   const getMessages = (item) => (
-    <div className="text-break mb-2" key={item.id * Math.random()}>
+    <div className="text-break mb-2" key={item.id}>
       <b>
-        {item.name}
+        {item.username}
         :
         {' '}
       </b>
-      <span>{item.messages}</span>
+      <span>{item.body}</span>
     </div>
   );
   return (
@@ -29,16 +25,9 @@ const Messages = () => {
       <div className="messege-button">
         <TitleChanel />
         <div id="messages-box" className="chat-messages overflow-auto px-5 ">
-          {data && newMessages.map(getMessages)}
+          {data && data.messages.map(getMessages)}
         </div>
-        <div className="input-message">
-          <form onSubmit={setMessages} className="form-message">
-            <div className="input-group has-validation">
-              <input onChange={(e) => getTextInput(e.target.value)} name="body" aria-label="Новое сообщение" placeholder="Введите сообщение..." className="form-message-input" value={textInput} />
-              <button type="submit" disabled="" className="btn-vertical">1</button>
-            </div>
-          </form>
-        </div>
+        <Message />
       </div>
     </div>
   );

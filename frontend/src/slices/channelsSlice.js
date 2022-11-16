@@ -38,8 +38,8 @@ const channelsReducer = createSlice({
     getShowModal: (state) => {
       state.showModal = !state.showModal;
     },
-    addStatus: (state) => {
-      state.messages.push({ id: 10 * Math.random(), name: 'Andrey', messages: 'Привет всем' });
+    addMessage: (state, active) => {
+      state.messages.push(active.payload);
     },
   },
   extraReducers: (builder) => {
@@ -52,6 +52,6 @@ const channelsReducer = createSlice({
   },
 });
 export const {
-  addStatus, getShowModal, getActiveChannel, messages,
+  addMessage, getShowModal, getActiveChannel, messages,
 } = channelsReducer.actions;
 export default channelsReducer.reducer;
