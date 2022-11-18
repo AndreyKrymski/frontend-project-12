@@ -3,10 +3,10 @@ import { useFormik } from 'formik';
 import cn from 'classname';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import routers from '../routes.js';
-import '../style/Login.css';
-import local from '../images/local.jpg';
-import useAuth from '../hooks/thisContext.js';
+import routers from '../../routes.js';
+import '../../style/Login.css';
+import local from '../../images/local.jpg';
+import useAuth from '../../hooks/thisContext.js';
 
 const Login = () => {
   const [authorization, setAuthorization] = useState(false);

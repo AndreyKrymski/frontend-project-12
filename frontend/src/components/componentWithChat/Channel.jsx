@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import cn from 'classname';
-import { getActiveChannel } from '../slices/channelsSlice.js';
+import { getActiveChannel } from '../../slices/channelsSlice.js';
 
 const Channel = () => {
   const data = useSelector((state) => state.channels);

@@ -1,5 +1,5 @@
 import React from 'react';
-import image from '../images/404.svg';
+import image from '../../images/404.svg';
 
 const NotFound = () => {
   const styleImage = {

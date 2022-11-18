@@ -1,17 +1,10 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import io from 'socket.io-client';
-import Contexts from '../contexts/index.js';
+import Contexts from '../../contexts/index.js';
 
 const AuthProvider = ({ children }) => {
   const [logged, setLogged] = useState(!!localStorage.userId);
-  const [socket, setSocket] = useState(null);
-
-  useEffect(() => {
-    const newSocket = io('http://localhost:3000');
-    setSocket(newSocket);
-    return () => newSocket.close();
-  }, [setSocket]);
-
+  const socket = io('http://localhost:3000');
   const logIn = () => setLogged(true);
   const logOut = () => {
     localStorage.removeItem('userId');

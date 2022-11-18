@@ -5,9 +5,9 @@ import {
 import { Navbar, Nav } from 'react-bootstrap';
 import NotFound from './NotFound.jsx';
 import Login from './Login.jsx';
-import '../style/Browser.css';
+import '../../style/Browser.css';
 import SingUp from './SingUp.jsx';
-import useAuth from '../hooks/thisContext.js';
+import useAuth from '../../hooks/thisContext.js';
 import Chat from './Chat.jsx';
 
 const BrowserRouter = () => {

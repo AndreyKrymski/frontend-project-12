@@ -89,6 +89,10 @@
   background-color: #f4f6f8;
 }
 
+.text-break:last-child{
+  
+}
+
 .chat-messages {
   box-sizing: border-box;
   height: 650px;
@@ -96,6 +100,7 @@
   padding-top: 70px;
   background-color: white;
   font-size: 25px;
+  overflow: auto;
 }
 
 .form-message {

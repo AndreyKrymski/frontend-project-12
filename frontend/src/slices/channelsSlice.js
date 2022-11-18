@@ -29,17 +29,17 @@ const channelsReducer = createSlice({
   name: 'responce',
   initialState,
   reducers: {
-    getActiveChannel: (state, active) => {
-      state.currentChannelId = active.payload;
+    getActiveChannel: (state, action) => {
+      state.currentChannelId = action.payload;
     },
-    messages: (state, active) => {
-      state.messages.push({ id: state.currentChannelId, messages: active.payload, name: 'Anrey' });
+    messages: (state, action) => {
+      state.messages.push({ id: state.currentChannelId, messages: action.payload, name: 'Anrey' });
     },
     getShowModal: (state) => {
       state.showModal = !state.showModal;
     },
-    addMessage: (state, active) => {
-      state.messages.push(active.payload);
+    addMessage: (state, action) => {
+      state.messages.push(action.payload);
     },
   },
   extraReducers: (builder) => {

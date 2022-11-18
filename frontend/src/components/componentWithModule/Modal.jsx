@@ -1,35 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import cn from 'classname';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchTasks, getShowModal } from '../slices/channelsSlice';
-import Channel from './Channel.jsx';
-import Messages from './Messages';
-import '../style/Chat.css';
 
-const Chat = () => {
-  const dispatch = useDispatch();
-  const data = useSelector((state) => state.channels);
-  useEffect(() => {
-    dispatch(fetchTasks());
-  }, [dispatch]);
+const Modal = () => {
   const [textModal, getTextModal] = useState('');
+
   return (
     <>
-      <div className="container-chat">
-        <div className="container-title-message">
-          <div className="channels">
-            <div className="channels-title">
-              <span>Каналы</span>
-              <button type="submit" className="addChanels" onClick={() => dispatch(getShowModal())}>
-                <span className="visually-hidden">+</span>
-              </button>
-            </div>
-            <Channel />
-          </div>
-          <Messages />
-        </div>
-      </div>
-      <div className={cn('fadw', 'show', { 'modal-backdrop': data.showModal })} />
+      <div className={cn('fadw', 'show')} />
       <div role="dialog" aria-modal="true" className="fade modal show">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
@@ -58,4 +35,4 @@ const Chat = () => {
     </>
   );
 };
-export default Chat;
+export default Modal;

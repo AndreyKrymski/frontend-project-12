@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 const TitleChanel = () => {
   const data = useSelector((state) => state.channels);
   const numberOfMessages = data.messages.reduce((acc, item) => {
-    if (item.id === data.currentChannelId) {
+    if (item.channelId === data.currentChannelId) {
       acc += 1;
     }
     return acc;

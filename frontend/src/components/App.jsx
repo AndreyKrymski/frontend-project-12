@@ -1,9 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import '../style/App.css';
-import AuthProvider from './AuthProvider.jsx';
+import AuthProvider from './mainComponents/AuthProvider.jsx';
 import store from '../slices/index.js';
-import BrowserRouter from './BrowserRouter.jsx';
+import BrowserRouter from './mainComponents/BrowserRouter.jsx';
 
 const App = () => (
   <Provider store={store}>

@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { Formik } from 'formik';
 import cn from 'classname';
 import * as yup from 'yup';
-import '../style/SingUp.css';
-import imageSignUp from '../images/signUp.jpg';
+import '../../style/SingUp.css';
+import imageSignUp from '../../images/signUp.jpg';
 
 const SingUp = () => {
   const schema = yup.object().shape({
