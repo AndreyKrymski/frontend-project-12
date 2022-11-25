@@ -5,7 +5,7 @@ import MessageInput from './MessageInput.jsx';
 
 const Messages = () => {
   const data = useSelector((state) => state.channels);
-  const MessagChannelsId = data.messages.filter((item) => item.channelId === data.currentChannelId);
+  const messagChannelsId = data.messages.filter((item) => item.channelId === data.currentChannelId);
 
   const getMessages = (item) => (
     <div className="text-break mb-2" key={item.id}>
@@ -22,7 +22,7 @@ const Messages = () => {
       <div className="messege-button">
         <TitleChanel />
         <div id="messages-box" className="chat-messages overflow-auto px-5 ">
-          {MessagChannelsId.map(getMessages)}
+          {messagChannelsId.map(getMessages)}
         </div>
         <MessageInput />
       </div>

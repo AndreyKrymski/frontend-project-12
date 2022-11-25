@@ -17,12 +17,14 @@
   flex-direction: row;
   margin: 0px;
 }
+
 .channels {
   border-right: 2px solid #b0bcc9;
   flex: 0 0 auto;
   width: 16%;
   height: 829px;
 }
+
 .channels-title {
   position: relative;
   font-size: 25px;
@@ -52,18 +54,23 @@
 .chennels-ul {
   display: flex;
   flex-direction: column;
+  max-height: 650px;
 }
 
 .chennels-item li {
   list-style-type: none;
 }
-.chennels-item li button {
+.button-chanels {
   width: 150px;
   height: 60px;
   margin-bottom: 10px;
   font-size: 24px;
   border: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: #f4f6f8
 }
+
 .chennels-item li button:last-child {
   margin-bottom: 0px;
 }
@@ -89,10 +96,6 @@
   background-color: #f4f6f8;
 }
 
-.text-break:last-child{
-  
-}
-
 .chat-messages {
   box-sizing: border-box;
   height: 650px;
@@ -101,6 +104,7 @@
   background-color: white;
   font-size: 25px;
   overflow: auto;
+  overflow-wrap: break-word;
 }
 
 .form-message {
@@ -205,21 +209,40 @@
   border-color: #6c757d;
   color: #fff;
 }
-/*стили модального окна*/
 
-.modal-backdrop {
-  opacity: .5;
-  background-color: #000;
-  height: 100vh;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  z-index: 1050;
-  box-sizing: border-box;
+/* кнопка на канале*/
+.nav-item {
+  display: flex;
+  position: relative;
 }
-.modal {
-  display: none;
+.dropdown-toggle-split {
+  flex-basis: 20%;
+  height: 60px;
+  color: #f4f6f8;
+  border: none;
+  background: #f4f6f8;
 }
 
+.dropdown-toggle-split::before{
+  content: "";
+  position: absolute;
+  top: 25px;
+  right: 7px;
+  border: 9px solid transparent;
+  border-top: 15px solid rgb(83, 79, 79);
+}
+.btn-str {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: #6c757d;
+}
+.btn-str::before {
+  content: "";
+  border-top: 15px solid rgb(240, 232, 232);
+}
 
+.form-message-input:focus {
+  outline: none;
+  border: 3px solid #0d6efd;
+  border-radius: 5px;
+}

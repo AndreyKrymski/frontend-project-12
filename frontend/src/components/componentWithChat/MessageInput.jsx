@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import useAuth from '../../hooks/thisContext';
 
@@ -6,6 +6,10 @@ const MessageInput = () => {
   const data = useSelector((state) => state.channels);
   const [value, setValue] = useState('');
   const { socket } = useAuth();
+  const inputRef = useRef();
+  useEffect(() => {
+    inputRef.current.focus();
+  });
   const submitForm = (e) => {
     e.preventDefault();
     socket.emit(
@@ -29,6 +33,7 @@ const MessageInput = () => {
             placeholder="Введите сообщение..."
             className="form-message-input"
             value={value}
+            ref={inputRef}
           />
           <button type="submit" disabled="" className="btn-vertical">1</button>
         </div>

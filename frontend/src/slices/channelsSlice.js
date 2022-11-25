@@ -23,7 +23,6 @@ const initialState = {
   channels: [],
   currentChannelId: '',
   messages: [],
-  showModal: false,
 };
 const channelsReducer = createSlice({
   name: 'responce',
@@ -32,14 +31,19 @@ const channelsReducer = createSlice({
     getActiveChannel: (state, action) => {
       state.currentChannelId = action.payload;
     },
-    messages: (state, action) => {
-      state.messages.push({ id: state.currentChannelId, messages: action.payload, name: 'Anrey' });
-    },
-    getShowModal: (state) => {
-      state.showModal = !state.showModal;
-    },
     addMessage: (state, action) => {
       state.messages.push(action.payload);
+    },
+    addChannel: (state, action) => {
+      state.channels.push(action.payload);
+    },
+    removeChannel: (state, action) => {
+      state.channels = state.channels.filter((item) => item.id !== action.payload.id);
+      state.messages = state.messages.filter((item) => item.channelId !== action.payload.id);
+    },
+    renameChannel: (state, action) => {
+      state.channels = state.channels
+        .map((item) => (item.id === action.payload.id ? action.payload : item));
     },
   },
   extraReducers: (builder) => {
@@ -52,6 +56,6 @@ const channelsReducer = createSlice({
   },
 });
 export const {
-  addMessage, getShowModal, getActiveChannel, messages,
+  addMessage, getActiveChannel, addChannel, removeChannel, renameChannel,
 } = channelsReducer.actions;
 export default channelsReducer.reducer;
