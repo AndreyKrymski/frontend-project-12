@@ -112,3 +112,21 @@
   left: 0;
   top: 465px;
 }
+
+.error-singUp {
+  background-color: #dc3545;
+  color: white;
+  width: 555px;
+  height: 35px;
+  margin-bottom: 20px;
+  border: 2px solid #ced4da;
+  border-radius: 5px;
+  position: absolute;
+  left: 0;
+  bottom: 120px;
+  font-size: 25px;
+  font-family: sans-serif;
+  outline: none;
+  z-index: 1;
+
+}

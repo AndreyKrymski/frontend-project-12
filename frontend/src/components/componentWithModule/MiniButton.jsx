@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import cn from 'classname';
-import { getIdMiniModal } from '../../slices/moduleSlice';
+import { getIdMiniModal, openMiniModal } from '../../slices/moduleSlice';
 import MiniModal from './MiniModal';
 
 const MiniButton = ({ idButton }) => {
@@ -11,8 +11,8 @@ const MiniButton = ({ idButton }) => {
   const clickMiniButton = (e) => {
     getActive((modal) => !modal);
     dispatch(getIdMiniModal(e.target.id));
+    dispatch(openMiniModal());
   };
-
   return (
     <>
       <button
