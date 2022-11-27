@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import useAuth from '../../hooks/thisContext';
 
 const MessageInput = () => {
+  const { t } = useTranslation();
   const data = useSelector((state) => state.channels);
   const [value, setValue] = useState('');
   const { socket } = useAuth();
@@ -30,7 +32,7 @@ const MessageInput = () => {
             onChange={(e) => setValue(e.target.value)}
             name="body"
             aria-label="Новое сообщение"
-            placeholder="Введите сообщение..."
+            placeholder={t('messageInput')}
             className="form-message-input"
             value={value}
             ref={inputRef}

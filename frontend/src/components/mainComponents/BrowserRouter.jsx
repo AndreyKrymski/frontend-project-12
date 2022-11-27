@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router, Link, Routes, Route, Navigate,
 } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import NotFound from './NotFound.jsx';
 import Login from './Login.jsx';
 import '../../style/Browser.css';
@@ -11,7 +12,11 @@ import useAuth from '../../hooks/thisContext.js';
 import Chat from './Chat.jsx';
 
 const BrowserRouter = () => {
+  const { t, i18n } = useTranslation();
   const auth = useAuth();
+  const changeLanguage = (language) => {
+    i18n.changeLanguage(language);
+  };
   return (
     <Router>
       <Navbar>
@@ -19,12 +24,20 @@ const BrowserRouter = () => {
           <Nav.Link as={Link} to={localStorage.userId ? null : '/login'}>
             <div className="container">
               <div className="nav-link">
-                Hexlet Chat
+                {t('browserRouter.nameChat')}
+                <button type="button" className="navInput" onClick={() => changeLanguage('en')}>EN</button>
+                <button type="button" className="navInput" onClick={() => changeLanguage('ru')}>RU</button>
               </div>
               {localStorage.userId
                 ? (
                   <div>
-                    <button onClick={() => auth.logOut()} type="submit" className="input-logOut">Выйти</button>
+                    <button
+                      onClick={() => auth.logOut()}
+                      type="submit"
+                      className="input-logOut"
+                    >
+                      {t('browserRouter.clickSignUp')}
+                    </button>
                   </div>
                 )
                 : <div />}

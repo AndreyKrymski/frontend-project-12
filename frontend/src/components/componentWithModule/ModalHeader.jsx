@@ -1,13 +1,15 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { getShowModal } from '../../slices/moduleSlice';
 
 const ModalHeader = ({ props }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const text = {
-    newChannels: 'Добавить канал',
-    removeChannels: 'Удалить канал',
-    renameChannels: 'Переименовать канал',
+    newChannels: t('modalHeader.newChannels'),
+    removeChannels: t('modalHeader.removeChannels'),
+    renameChannels: t('modalHeader.renameChannels'),
   };
   return (
     <div className="modal-header">

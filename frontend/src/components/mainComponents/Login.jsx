@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import cn from 'classname';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import routers from '../../routes.js';
 import '../../style/Login.css';
 import local from '../../images/local.jpg';
@@ -12,6 +13,7 @@ const Login = () => {
   const [authorization, setAuthorization] = useState(false);
   const navigate = useNavigate();
   const inputUsername = useRef();
+  const { t } = useTranslation();
 
   useEffect(() => {
     inputUsername.current.focus();
@@ -49,14 +51,14 @@ const Login = () => {
             <img src={local} alt="изображение пользователя" className="local-image" />
           </div>
           <form className="form" onSubmit={formik.handleSubmit}>
-            <h1 className="form-titl">Войти</h1>
+            <h1 className="form-titl">{t('login.logIn')}</h1>
             <div className="form-container-usernam">
               <input
                 onChange={formik.handleChange}
                 name="username"
                 autoComplete="username"
                 required=""
-                placeholder="Ваш ник"
+                placeholder={t('login.yuorNik')}
                 id="username"
                 className={cn('form-contro1', { 'is-invalid': authorization })}
                 value={formik.values.username}
@@ -69,22 +71,22 @@ const Login = () => {
                 name="password"
                 autoComplete="currentPassword"
                 required=""
-                placeholder="Пароль"
+                placeholder={t('login.password')}
                 type="password"
                 id="password"
                 className={cn('form-contro2', { 'is-invalid': authorization })}
                 value={formik.values.password}
               />
-              {authorization && <p className="err">Неверные имя пользователя или пароль</p>}
+              {authorization && <p className="err">{t('errors.errPass')}</p>}
             </div>
-            <button type="submit" className="button-primary">Войти</button>
+            <button type="submit" className="button-primary">{t('login.logIn')}</button>
           </form>
         </div>
       </div>
       <div className="card-footer">
         <div className="text-footer">
-          <span>Нет аккаунта? </span>
-          <a href="/signup">Регистрация</a>
+          <span>{t('login.acount')}</span>
+          <a href="/signup">{t('login.registration')}</a>
         </div>
       </div>
     </div>

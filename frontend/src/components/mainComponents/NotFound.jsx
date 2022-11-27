@@ -1,7 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import image from '../../images/404.svg';
 
 const NotFound = () => {
+  const { t } = useTranslation();
   const styleImage = {
     height: '500px',
     verticalAlign: 'center',
@@ -16,10 +18,10 @@ const NotFound = () => {
         alt="не найдено изображение"
         src={image}
       />
-      <h1 className="h4 text-muted" style={{ fontSize: '50px' }}>Страница не найдена</h1>
+      <h1 className="h4 text-muted" style={{ fontSize: '50px' }}>{t('notFound.listNot')}</h1>
       <p className="text-muted" style={{ fontSize: '25px' }}>
-        Но вы можете перейти
-        <a href="/"> на главную страницу</a>
+        {t('notFound.navigList')}
+        <a href="/">{t('notFound.mainList')}</a>
       </p>
     </div>
   );

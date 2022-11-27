@@ -1,9 +1,11 @@
 /* eslint-disable no-param-reassign */
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 const TitleChanel = () => {
   const data = useSelector((state) => state.channels);
+  const { t } = useTranslation();
   const numberOfMessages = data.messages.reduce((acc, item) => {
     if (item.channelId === data.currentChannelId) {
       acc += 1;
@@ -27,9 +29,7 @@ const TitleChanel = () => {
         </b>
       </p>
       <span className="text-muted">
-        {numberOfMessages}
-        {' '}
-        сообщений
+        {t('titleChannel.key', { count: numberOfMessages })}
       </span>
     </div>
   );

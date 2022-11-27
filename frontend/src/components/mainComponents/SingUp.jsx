@@ -3,6 +3,7 @@ import { Formik } from 'formik';
 import axios from 'axios';
 import cn from 'classname';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 import routes from '../../routes';
 import useAuth from '../../hooks/thisContext.js';
@@ -11,13 +12,14 @@ import imageSignUp from '../../images/signUp.jpg';
 
 const SingUp = () => {
   const [authorization, setAuthorization] = useState(false);
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const auth = useAuth();
 
   const schema = yup.object().shape({
-    username: yup.string().min(3, 'От 3 до 20 символов').max(20, 'От 3 до 20 символов').required('Обязательное поле'),
-    password: yup.string().min(6, 'Не менее 6 символов').required('Обязательное поле'),
-    confirmPassword: yup.string().oneOf([yup.ref('password')], 'Пароли должны совпадать').required('Обязательное поле'),
+    username: yup.string().min(3, t('signUp.otTreefor')).max(20, t('signUp.otTreefor')).required(t('signUp.reguire')),
+    password: yup.string().min(6, t('signUp.notSixSimvols')).required(t('signUp.reguire')),
+    confirmPassword: yup.string().oneOf([yup.ref('password')], t('signUp.passwordRegure')).required(t('signUp.reguire')),
   });
   const inputUsername = useRef();
   useEffect(() => {
@@ -59,11 +61,11 @@ const SingUp = () => {
           >
             {(props) => (
               <form className="form">
-                <h1 className="form-title">Регистрация</h1>
+                <h1 className="form-title">{t('login.registration')}</h1>
                 <div className="form-container-username">
                   <input
                     name="username"
-                    placeholder="Имя пользователя"
+                    placeholder={t('signUp.nameUser')}
                     id="username"
                     className={cn('form-control1', { 'is-invalid': (props.touched.username && props.errors.username) || authorization })}
                     onChange={props.handleChange}
@@ -78,7 +80,7 @@ const SingUp = () => {
                 <div className="form-container-password">
                   <input
                     name="password"
-                    placeholder="Пароль"
+                    placeholder={t('login.password')}
                     type="password"
                     id="password"
                     className={cn('form-control2', { 'is-invalid': (props.touched.password && props.errors.password) || authorization })}
@@ -94,7 +96,7 @@ const SingUp = () => {
                   <input
                     name="confirmPassword"
                     type="password"
-                    placeholder="Подтвердите пароль"
+                    placeholder={t('signUp.passwordPass')}
                     id="confirmPassword"
                     className={cn('form-control3', { 'is-invalid': (props.touched.confirmPassword && props.errors.confirmPassword) || authorization })}
                     onChange={props.handleChange}
@@ -108,7 +110,7 @@ const SingUp = () => {
                   }
                 </div>
                 {
-                  authorization && <div className="error-singUp">Такой пользователь уже существует</div>
+                  authorization && <div className="error-singUp">{t('signUp.thisUserComplete')}</div>
                 }
                 <button
                   disabled={!props.isValid || !props.dirty}
@@ -116,7 +118,7 @@ const SingUp = () => {
                   type="submit"
                   className="button-primary"
                 >
-                  Зарегистрироваться
+                  {t('signUp.registration')}
                 </button>
               </form>
             )}

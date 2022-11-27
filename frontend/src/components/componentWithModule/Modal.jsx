@@ -1,15 +1,17 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import cn from 'classname';
 import * as yup from 'yup';
 import { Formik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import { getShowModal, getIdMiniModal } from '../../slices/moduleSlice.js';
 import ModalDialog from './ModalDialog.jsx';
 import ModalHeader from './ModalHeader.jsx';
+import ButtonModal from './ButtomModal.jsx';
 import useAuth from '../../hooks/thisContext.js';
 import '../../style/Modal.css';
 
 const Modal = () => {
+  const { t } = useTranslation();
   const data = useSelector((state) => state.channels);
   const modal = useSelector((state) => state.module);
   const inputRef = useRef();
@@ -18,8 +20,8 @@ const Modal = () => {
   const name = Object.values(data.channels.map((item) => item.name));
   const nameChanel = data.channels.filter((item) => item.id === Number(modal.idMiniModal))[0];
   const schema = yup.object().shape({
-    channelname: yup.string().min(3, 'От 3 до 20 символов').max(20, 'От 3 до 20 символов').notOneOf([name], 'Должно быть уникальным')
-      .required('Обязательное поле'),
+    channelname: yup.string().min(3, t('signUp.otTreefor')).max(20, t('signUp.otTreefor')).notOneOf([name], t('modal'))
+      .required(t('signUp.reguire')),
   });
 
   useEffect(() => {
@@ -47,33 +49,7 @@ const Modal = () => {
             validationSchema={schema}
           >
             {(props) => (
-              <form className="">
-                <div>
-                  <label className="visually-hidden" htmlFor="channelname">
-                    <input
-                      onChange={props.handleChange}
-                      value={props.values.channelname}
-                      ref={inputRef}
-                      name="channelname"
-                      id="channelname"
-                      className={cn('inmput-modal', 'form-control', { 'is-invalid': props.errors.channelname })}
-                    />
-                  </label>
-                  {
-                    props.errors.channelname && <div className="error invalid-feedback">{props.errors.channelname}</div>
-                  }
-                  <div className="d-flex justify-content-end">
-                    <button
-                      type="button"
-                      className="me-2 btn btn-secondary"
-                      onClick={() => dispatch(getShowModal(''))}
-                    >
-                      Отменить
-                    </button>
-                    <button onClick={props.handleSubmit} type="submit" className="btn sinii btn-primary">Отправить</button>
-                  </div>
-                </div>
-              </form>
+              <ButtonModal props={props} inputRef={inputRef} />
             )}
           </Formik>
         </div>
@@ -92,16 +68,16 @@ const Modal = () => {
         <div className="modal-body">
           <form className="" onSubmit={deleteChannel}>
             <div>
-              <div className="text-delete" ref={inputRef}>Уверены?</div>
+              <div className="text-delete" ref={inputRef}>{t('question')}</div>
               <div className="d-flex justify-content-end">
                 <button
                   type="button"
                   className="me-2 btn btn-secondary"
                   onClick={() => dispatch(getShowModal(''))}
                 >
-                  Отменить
+                  {t('buttonModal.cancel')}
                 </button>
-                <button type="submit" className="btn red btn-primary">Удалить</button>
+                <button type="submit" className="btn red btn-primary">{t('miniModal.delete')}</button>
               </div>
             </div>
           </form>
@@ -125,33 +101,7 @@ const Modal = () => {
             validationSchema={schema}
           >
             {(props) => (
-              <form className="">
-                <div>
-                  <label className="visually-hidden" htmlFor="channelname">
-                    <input
-                      onChange={props.handleChange}
-                      value={props.values.channelname}
-                      ref={inputRef}
-                      name="channelname"
-                      id="channelname"
-                      className={cn('inmput-modal', 'form-control', { 'is-invalid': props.errors.channelname })}
-                    />
-                  </label>
-                  {
-                    props.errors.channelname && <div className="error invalid-feedback">{props.errors.channelname}</div>
-                  }
-                  <div className="d-flex justify-content-end">
-                    <button
-                      type="button"
-                      className="me-2 btn btn-secondary"
-                      onClick={() => dispatch(getShowModal(''))}
-                    >
-                      Отменить
-                    </button>
-                    <button onClick={props.handleSubmit} type="submit" className="btn sinii btn-primary">Отправить</button>
-                  </div>
-                </div>
-              </form>
+              <ButtonModal props={props} inputRef={inputRef} />
             )}
           </Formik>
         </div>
