@@ -4,6 +4,7 @@ import cn from 'classname';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import routers from '../../routes.js';
 import '../../style/Login.css';
 import local from '../../images/local.jpg';
@@ -33,10 +34,13 @@ const Login = () => {
         auth.logIn();
         navigate('/');
       } catch (err) {
-        inputUsername.current.select();
+        if (err.code === 'ERR_NETWORK') {
+          setAuthorization(false);
+          toast(t('errors.errNetwork'), { type: 'error' });
+        }
         if (err.isAxiosError && err.response.status === 401) {
+          inputUsername.current.select();
           setAuthorization(true);
-          return;
         }
         throw err;
       }

@@ -10,6 +10,7 @@
     "formik": "^2.2.9",
     "http-errors": "^2.0.0",
     "i18next": "^22.0.6",
+    "leo-profanity": "^1.7.0",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
@@ -20,6 +21,7 @@
     "react-router-dom": "^6.4.2",
     "react-router-native": "^6.4.2",
     "react-scripts": "^5.0.1",
+    "react-toastify": "^9.1.1",
     "socket.io-client": "^4.5.3",
     "yup": "^0.32.11"
   },

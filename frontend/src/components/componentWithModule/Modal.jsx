@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import { getShowModal, getIdMiniModal } from '../../slices/moduleSlice.js';
 import ModalDialog from './ModalDialog.jsx';
 import ModalHeader from './ModalHeader.jsx';
@@ -10,13 +11,15 @@ import ButtonModal from './ButtomModal.jsx';
 import useAuth from '../../hooks/thisContext.js';
 import '../../style/Modal.css';
 
+const typeSuccess = { type: 'success', autoClose: 2500 };
+
 const Modal = () => {
   const { t } = useTranslation();
   const data = useSelector((state) => state.channels);
   const modal = useSelector((state) => state.module);
   const inputRef = useRef();
   const dispatch = useDispatch();
-  const { socket } = useAuth();
+  const { socket, filteredStr } = useAuth();
   const name = Object.values(data.channels.map((item) => item.name));
   const nameChanel = data.channels.filter((item) => item.id === Number(modal.idMiniModal))[0];
   const schema = yup.object().shape({
@@ -43,8 +46,14 @@ const Modal = () => {
               channelname: '',
             }}
             onSubmit={(value) => {
-              socket.emit('newChannel', { name: value.channelname });
-              dispatch(getShowModal(''));
+              try {
+                const filterText = filteredStr(value.channelname);
+                socket.emit('newChannel', { name: filterText });
+                dispatch(getShowModal(''));
+                toast(t('toastify.newChannel'), typeSuccess);
+              } catch (err) {
+                console.log(err);
+              }
             }}
             validationSchema={schema}
           >
@@ -61,6 +70,7 @@ const Modal = () => {
       socket.emit('removeChannel', { id: Number(modal.idMiniModal) });
       dispatch(getShowModal(''));
       dispatch(getIdMiniModal(''));
+      toast(t('toastify.removeChannel'), typeSuccess);
     };
     return (
       <ModalDialog>
@@ -94,9 +104,11 @@ const Modal = () => {
               channelname: nameChanel.name,
             }}
             onSubmit={(value) => {
-              socket.emit('renameChannel', { id: Number(modal.idMiniModal), name: value.channelname });
+              const filterText = filteredStr(value.channelname);
+              socket.emit('renameChannel', { id: Number(modal.idMiniModal), name: filterText });
               dispatch(getIdMiniModal(''));
               dispatch(getShowModal(''));
+              toast(t('toastify.renameChanel'), typeSuccess);
             }}
             validationSchema={schema}
           >

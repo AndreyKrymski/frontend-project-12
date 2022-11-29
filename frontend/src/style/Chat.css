@@ -247,3 +247,11 @@
   border: 3px solid #0d6efd;
   border-radius: 5px;
 }
+
+.toasify {
+  font-size: 30px;
+}
+.foo-bar {
+  padding: 100px;
+  font-size: 90px;
+}

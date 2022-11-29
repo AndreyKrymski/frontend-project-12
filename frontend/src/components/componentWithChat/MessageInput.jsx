@@ -7,17 +7,18 @@ const MessageInput = () => {
   const { t } = useTranslation();
   const data = useSelector((state) => state.channels);
   const [value, setValue] = useState('');
-  const { socket } = useAuth();
+  const { socket, filteredStr } = useAuth();
   const inputRef = useRef();
   useEffect(() => {
     inputRef.current.focus();
   });
   const submitForm = (e) => {
     e.preventDefault();
+    const filterText = filteredStr(value);
     socket.emit(
       'newMessage',
       {
-        body: value,
+        body: filterText,
         channelId: data.currentChannelId,
         username: (JSON.parse(localStorage.userId)).username,
       },

@@ -47,8 +47,14 @@ export default {
       removeChannels: 'Delete channel',
       renameChannels: 'Rename channel',
     },
+    toastify: {
+      newChannel: 'Channel created',
+      renameChanel: 'Channel renamed',
+      removeChannel: 'Channel deleted',
+    },
     errors: {
       errPass: 'Invalid username or password',
+      errNetwork: 'Connection error',
     },
   },
 };

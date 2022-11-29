@@ -10,6 +10,10 @@ import '../../style/Browser.css';
 import SingUp from './SingUp.jsx';
 import useAuth from '../../hooks/thisContext.js';
 import Chat from './Chat.jsx';
+import Toastify from '../componentWithModule/Toastify.jsx';
+
+import russia from '../../images/россия.png';
+import usa from '../../images/usa.jpg';
 
 const BrowserRouter = () => {
   const { t, i18n } = useTranslation();
@@ -25,9 +29,14 @@ const BrowserRouter = () => {
             <div className="container">
               <div className="nav-link">
                 {t('browserRouter.nameChat')}
-                <button type="button" className="navInput" onClick={() => changeLanguage('en')}>EN</button>
-                <button type="button" className="navInput" onClick={() => changeLanguage('ru')}>RU</button>
+                <button type="button" className="navInput" onClick={() => changeLanguage('en')}>
+                  <img src={usa} alt="usa" className="image-flag" />
+                </button>
+                <button type="button" className="navInput" onClick={() => changeLanguage('ru')}>
+                  <img src={russia} alt="russia" className="image-flag" />
+                </button>
               </div>
+              <Toastify />
               {localStorage.userId
                 ? (
                   <div>
