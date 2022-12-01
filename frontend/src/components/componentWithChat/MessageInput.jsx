@@ -2,12 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import useAuth from '../../hooks/thisContext';
+import useSocket from '../../hooks/useSocket.js';
 
 const MessageInput = () => {
   const { t } = useTranslation();
   const data = useSelector((state) => state.channels);
   const [value, setValue] = useState('');
-  const { socket, filteredStr } = useAuth();
+  const { filteredStr } = useAuth();
+  const { emitSocket } = useSocket();
   const inputRef = useRef();
   useEffect(() => {
     inputRef.current.focus();
@@ -15,14 +17,12 @@ const MessageInput = () => {
   const submitForm = (e) => {
     e.preventDefault();
     const filterText = filteredStr(value);
-    socket.emit(
-      'newMessage',
-      {
-        body: filterText,
-        channelId: data.currentChannelId,
-        username: (JSON.parse(localStorage.userId)).username,
-      },
-    );
+    const param = {
+      body: filterText,
+      channelId: data.currentChannelId,
+      username: (JSON.parse(localStorage.userId)).username,
+    };
+    emitSocket('newMessage', param);
     setValue('');
   };
   return (

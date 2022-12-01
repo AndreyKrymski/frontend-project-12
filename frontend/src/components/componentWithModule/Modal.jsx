@@ -9,6 +9,7 @@ import ModalDialog from './ModalDialog.jsx';
 import ModalHeader from './ModalHeader.jsx';
 import ButtonModal from './ButtomModal.jsx';
 import useAuth from '../../hooks/thisContext.js';
+import useSocket from '../../hooks/useSocket.js';
 import '../../style/Modal.css';
 
 const typeSuccess = { type: 'success', autoClose: 2500 };
@@ -19,7 +20,8 @@ const Modal = () => {
   const modal = useSelector((state) => state.module);
   const inputRef = useRef();
   const dispatch = useDispatch();
-  const { socket, filteredStr } = useAuth();
+  const { filteredStr } = useAuth();
+  const { emitSocket } = useSocket();
   const name = Object.values(data.channels.map((item) => item.name));
   const nameChanel = data.channels.filter((item) => item.id === Number(modal.idMiniModal))[0];
   const schema = yup.object().shape({
@@ -48,7 +50,7 @@ const Modal = () => {
             onSubmit={(value) => {
               try {
                 const filterText = filteredStr(value.channelname);
-                socket.emit('newChannel', { name: filterText });
+                emitSocket('newChannel', { name: filterText });
                 dispatch(getShowModal(''));
                 toast(t('toastify.newChannel'), typeSuccess);
               } catch (err) {
@@ -67,7 +69,7 @@ const Modal = () => {
   } if (modal.status === 'removeChannels') {
     const deleteChannel = (e) => {
       e.preventDefault();
-      socket.emit('removeChannel', { id: Number(modal.idMiniModal) });
+      emitSocket('removeChannel', { id: Number(modal.idMiniModal) });
       dispatch(getShowModal(''));
       dispatch(getIdMiniModal(''));
       toast(t('toastify.removeChannel'), typeSuccess);
@@ -105,7 +107,7 @@ const Modal = () => {
             }}
             onSubmit={(value) => {
               const filterText = filteredStr(value.channelname);
-              socket.emit('renameChannel', { id: Number(modal.idMiniModal), name: filterText });
+              emitSocket('renameChannel', { id: Number(modal.idMiniModal), name: filterText });
               dispatch(getIdMiniModal(''));
               dispatch(getShowModal(''));
               toast(t('toastify.renameChanel'), typeSuccess);

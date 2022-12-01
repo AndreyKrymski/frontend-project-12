@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Toastify = () => (
   <div className="toasify">
-    <ToastContainer limit={1} />
+    <ToastContainer limit={2} />
   </div>
 );
 export default Toastify;
