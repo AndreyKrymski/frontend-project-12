@@ -27,7 +27,7 @@ const BrowserRouter = () => {
     <Router>
       <Navbar>
         <Nav>
-          <Nav.Link as={Link} to={localStorage.userId ? null : '/login'}>
+          <Nav.Link as={Link} to={localStorage.userId ? '/' : '/login'}>
             <div className="container">
               <div className="nav-link">
                 {t('browserRouter.nameChat')}
