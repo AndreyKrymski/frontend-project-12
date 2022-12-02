@@ -62,51 +62,56 @@ const SingUp = () => {
             {(props) => (
               <form className="form">
                 <h1 className="form-title">{t('login.registration')}</h1>
-                <div className="form-container-username">
+                <div className="form-container">
                   <input
                     name="username"
-                    placeholder={t('signUp.nameUser')}
                     id="username"
-                    className={cn('form-control1', { 'is-invalid': (props.touched.username && props.errors.username) || authorization })}
+                    autoComplete="username"
+                    required=""
+                    className={cn('form-control', { 'is-invalid': (props.touched.username && props.errors.username) || authorization })}
                     onChange={props.handleChange}
                     onBlur={props.handleBlur}
                     value={props.values.username}
                     ref={inputUsername}
                   />
+                  <label className="form-label" htmlFor="username">{t('signUp.nameUser')}</label>
                   {
-                  props.touched.username && props.errors.username && <p className="errors1">{props.errors.username}</p>
+                    props.touched.username && props.errors.username && <p className="errors1">{props.errors.username}</p>
                   }
                 </div>
-                <div className="form-container-password">
+                <div className="form-container">
                   <input
                     name="password"
-                    placeholder={t('login.password')}
+                    autoComplete="password"
                     type="password"
                     id="password"
-                    className={cn('form-control2', { 'is-invalid': (props.touched.password && props.errors.password) || authorization })}
+                    required=""
+                    className={cn('form-control', { 'is-invalid': (props.touched.password && props.errors.password) || authorization })}
                     onChange={props.handleChange}
                     onBlur={props.handleBlur}
                     value={props.values.password}
                   />
+                  <label className="form-label" htmlFor="password">{t('login.password')}</label>
                   {
-                  props.touched.password && props.errors.password && <p className="errors2">{props.errors.password}</p>
+                    props.touched.password && props.errors.password && <p className="errors2">{props.errors.password}</p>
                   }
                 </div>
-                <div className="form-container-password-confirmation">
+                <div className="form-container">
                   <input
                     name="confirmPassword"
                     type="password"
-                    placeholder={t('signUp.passwordPass')}
+                    autoComplete="confirmPassword"
                     id="confirmPassword"
-                    className={cn('form-control3', { 'is-invalid': (props.touched.confirmPassword && props.errors.confirmPassword) || authorization })}
+                    className={cn('form-control', { 'is-invalid': (props.touched.confirmPassword && props.errors.confirmPassword) || authorization })}
                     onChange={props.handleChange}
                     onBlur={props.handleBlur}
                     value={props.values.confirmPassword}
                   />
+                  <label className="form-label" htmlFor="confirmPassword">{t('signUp.passwordPass')}</label>
                   {
-                  props.touched.confirmPassword
-                  && props.errors.confirmPassword
-                  && <p className="errors3">{props.errors.confirmPassword}</p>
+                    props.touched.confirmPassword
+                    && props.errors.confirmPassword
+                    && <p className="errors3">{props.errors.confirmPassword}</p>
                   }
                 </div>
                 {
