@@ -50,7 +50,7 @@ export default {
     },
     toastify: {
       newChannel: 'Канал создан',
-      renameChanel: 'Канал переименован',
+      renameChannel: 'Канал переименован',
       removeChannel: 'Канал удален',
     },
     errors: {

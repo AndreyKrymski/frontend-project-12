@@ -57,3 +57,17 @@
   font-family: sans-serif;
 
 }
+
+.errorSocket {
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(250, 1, 1, 0.719);
+  font-size: 30px;
+  text-align: center;
+  color: white;
+  box-sizing: border-box;
+  padding-top: 2.5%;
+  padding-bottom: 2.5%;
+}

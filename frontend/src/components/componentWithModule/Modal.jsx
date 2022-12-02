@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { toast } from 'react-toastify';
 import { getShowModal, getIdMiniModal } from '../../slices/moduleSlice.js';
 import ModalDialog from './ModalDialog.jsx';
 import ModalHeader from './ModalHeader.jsx';
@@ -11,8 +10,6 @@ import ButtonModal from './ButtomModal.jsx';
 import useAuth from '../../hooks/thisContext.js';
 import useSocket from '../../hooks/useSocket.js';
 import '../../style/Modal.css';
-
-const typeSuccess = { type: 'success', autoClose: 2500 };
 
 const Modal = () => {
   const { t } = useTranslation();
@@ -52,7 +49,6 @@ const Modal = () => {
                 const filterText = filteredStr(value.channelname);
                 emitSocket('newChannel', { name: filterText });
                 dispatch(getShowModal(''));
-                toast(t('toastify.newChannel'), typeSuccess);
               } catch (err) {
                 console.log(err);
               }
@@ -72,7 +68,6 @@ const Modal = () => {
       emitSocket('removeChannel', { id: Number(modal.idMiniModal) });
       dispatch(getShowModal(''));
       dispatch(getIdMiniModal(''));
-      toast(t('toastify.removeChannel'), typeSuccess);
     };
     return (
       <ModalDialog>
@@ -89,7 +84,7 @@ const Modal = () => {
                 >
                   {t('buttonModal.cancel')}
                 </button>
-                <button type="submit" className="btn red btn-primary">{t('miniModal.delete')}</button>
+                <button type="submit" className="btn red btn-primary" disabled={modal.socketError}>{t('miniModal.delete')}</button>
               </div>
             </div>
           </form>
@@ -110,7 +105,6 @@ const Modal = () => {
               emitSocket('renameChannel', { id: Number(modal.idMiniModal), name: filterText });
               dispatch(getIdMiniModal(''));
               dispatch(getShowModal(''));
-              toast(t('toastify.renameChanel'), typeSuccess);
             }}
             validationSchema={schema}
           >

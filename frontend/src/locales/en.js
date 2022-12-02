@@ -49,7 +49,7 @@ export default {
     },
     toastify: {
       newChannel: 'Channel created',
-      renameChanel: 'Channel renamed',
+      renameChannel: 'Channel renamed',
       removeChannel: 'Channel deleted',
     },
     errors: {

@@ -4,6 +4,7 @@ import {
 } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import NotFound from './NotFound.jsx';
 import Login from './Login.jsx';
 import '../../style/Browser.css';
@@ -17,6 +18,7 @@ import usa from '../../images/usa.jpg';
 
 const BrowserRouter = () => {
   const { t, i18n } = useTranslation();
+  const modal = useSelector((state) => state.module);
   const auth = useAuth();
   const changeLanguage = (language) => {
     i18n.changeLanguage(language);
@@ -54,6 +56,7 @@ const BrowserRouter = () => {
           </Nav.Link>
         </Nav>
       </Navbar>
+      {modal.socketError && <div className="errorSocket">{t('errors.errNetwork')}</div>}
       <Routes>
         <Route path="/" element={localStorage.userId ? <Chat /> : <Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />

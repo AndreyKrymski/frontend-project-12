@@ -6,6 +6,7 @@ const initialState = {
   status: '',
   idMiniModal: '',
   openMiniModal: false,
+  socketError: false,
 };
 const moduleReducer = createSlice({
   name: 'module',
@@ -21,7 +22,12 @@ const moduleReducer = createSlice({
     openMiniModal: (state) => {
       state.openMiniModal = !state.openMiniModal;
     },
+    getSocketError: (state, action) => {
+      state.socketError = action.payload;
+    },
   },
 });
-export const { getShowModal, getIdMiniModal, openMiniModal } = moduleReducer.actions;
+export const {
+  getShowModal, getIdMiniModal, openMiniModal, getSocketError,
+} = moduleReducer.actions;
 export default moduleReducer.reducer;

@@ -1,12 +1,13 @@
 import React from 'react';
 import cn from 'classname';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { getShowModal } from '../../slices/moduleSlice';
 
 const ButtonModal = ({ props, inputRef }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const modal = useSelector((state) => state.module);
   return (
     <form className="">
       <div>
@@ -31,7 +32,7 @@ const ButtonModal = ({ props, inputRef }) => {
           >
             {t('buttonModal.cancel')}
           </button>
-          <button onClick={props.handleSubmit} type="submit" className="btn sinii btn-primary">{t('buttonModal.send')}</button>
+          <button onClick={props.handleSubmit} type="submit" disabled={modal.socketError} className="btn sinii btn-primary">{t('buttonModal.send')}</button>
         </div>
       </div>
     </form>
