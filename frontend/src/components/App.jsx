@@ -22,7 +22,7 @@ import '../i18n.js';
 //    username: 'john-halo',
 //  },
 // };
-const App = () => (
+const App = async () => (
 // <Provider config={rollbarConfig}>
   //  <ErrorBoundary>
   <StoreProvider store={store}>
