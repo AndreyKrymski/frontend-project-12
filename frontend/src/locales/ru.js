@@ -1,7 +1,7 @@
 export default {
   translation: {
     browserRouter: {
-      nameChat: 'Хекслет чат',
+      nameChat: 'Hexlet Chat',
       clickSignUp: 'Выйти',
     },
     login: {
