@@ -118,7 +118,6 @@ const SingUp = () => {
                   authorization && <div className="error-singUp">{t('signUp.thisUserComplete')}</div>
                 }
                 <button
-                  disabled={!props.isValid || !props.dirty}
                   onClick={props.handleSubmit}
                   type="submit"
                   className="button-primary"
