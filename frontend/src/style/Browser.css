@@ -1,73 +1,127 @@
-:root {
-  background-color: '#f4f6f8',
-}
-.nav-link {
-  color: rgb(94, 86, 86);
-  font-size: 30px;
-  font-family: sans-serif;
-  text-decoration: none;
-  padding: 5px;
-}
-.navInput {
-  position: relative;
-  cursor: pointer;
-  width: 3.1%;
-  height: 3.3%;
+/*----------------------------------------------------------------------------------------------------------
+-------------------------root-------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------*/
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  margin-left: 25px;
-  border: none;
-  border-radius: 100%;
-}
-.image-flag {
-  border-radius: 100%;
-  width: 100%;
-  height: 100%;
+  background-color: none;
 }
 
+html {
+  background-color: rgb(248,249,250);
+}
+
+:root {
+  font-size: 1.3vw; 
+}
+
+#root {
+  background-color: rgb(248,249,250);
+  font-size: 1.8rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+/*----------------------------------------------------------------------------------------------------------
+-------------------------navigation-------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------*/
 .container {
-  position: relative;
-  max-height: 200px;
-  width: auto;
-  margin: 0px 40px;
+  margin: 0px auto;
+  padding: 1rem 3rem;
 }
 
-.navbar-nav {
-  border-bottom: 2px solid rgb(190, 167, 167);
-  max-height: 100px;
-  border-radius: 5px;
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.04rem solid rgb(190, 167, 167);
   background-color: white;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-link:active {
+  color: black;
+}
+
+.nav-link-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+.nav-button {
+  border: 0.05rem solid rgb(190, 167, 167);;
+  background-color: white;
+  border-radius: 100%;
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  margin-left: 1rem;
+  font-size: 0.8rem;
+  color: #fff;
+  padding: 0.5rem;
+  min-width: 2rem;
+  cursor: pointer;
+}
+
+.focus-button:hover {
+  background-color: #fff;
+  color: black;
+  border-color: #0d6efd;
+  transition: 0.8s;
 }
 
 .input-logOut {
   background-color: #0d6efd;
   border-color: #0d6efd;
   color: #fff;
-  display: inline-block;
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.5;
-  padding: 0.4rem 0.9rem;
+  line-height: 1.3;
+  font-size: 1.3rem;
+  padding: 0.5rem 1rem;
   text-align: center;
   text-decoration: none;
   transition: color .15s;
   border-radius: 0.3rem;
-  position: absolute;
-  right: 90px;
-  top: -9px;
-  font-family: sans-serif;
-
+  cursor: pointer;
 }
 
+/*----------------------------------------------------------------------------------------------------------
+--------------------------------------------errorSocket-----------------------------------------------------
+-----------------------------------------------------------------------------------------------------------*/
 .errorSocket {
-  width: 100%;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  background-color: rgba(250, 1, 1, 0.719);
-  font-size: 30px;
-  text-align: center;
-  color: white;
-  box-sizing: border-box;
-  padding-top: 2.5%;
-  padding-bottom: 2.5%;
+  font-size: 20px;
 }
+
+/*----------------------------------------------------------------------------------------------------------
+--------------------------------------------NotFound--------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------*/
+.conteiner-body {
+  padding: 0.5rem 5rem;
+  height: 0 auto;
+  background-color: rgb(248,249,250);
+  text-align: center;
+}
+
+
+.titleNotFound {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.textNotFound {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.imageNotFound {
+  width: 25rem;
+  vertical-align: center;
+  box-sizing: border-box;
+  text-align: center;
+  height: 0 auto;
+};

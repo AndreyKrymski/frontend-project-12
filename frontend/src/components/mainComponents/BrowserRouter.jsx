@@ -2,7 +2,7 @@ import React from 'react';
 import {
   BrowserRouter as Router, Link, Routes, Route, Navigate,
 } from 'react-router-dom';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import NotFound from './NotFound.jsx';
@@ -13,9 +13,6 @@ import useAuth from '../../hooks/thisContext.js';
 import Chat from './Chat.jsx';
 import Toastify from '../componentWithModule/Toastify.jsx';
 
-import russia from '../../images/россия.png';
-import usa from '../../images/usa.jpg';
-
 const BrowserRouter = () => {
   const { t, i18n } = useTranslation();
   const modal = useSelector((state) => state.module);
@@ -25,37 +22,29 @@ const BrowserRouter = () => {
   };
   return (
     <Router>
-      <Navbar>
-        <Nav>
-          <Nav.Link as={Link} to={localStorage.userId ? '/' : '/login'}>
-            <div className="container">
-              <div className="nav-link">
-                {t('browserRouter.nameChat')}
-                <button type="button" className="navInput" onClick={() => changeLanguage('en')}>
-                  <img src={usa} alt="usa" className="image-flag" />
-                </button>
-                <button type="button" className="navInput" onClick={() => changeLanguage('ru')}>
-                  <img src={russia} alt="russia" className="image-flag" />
-                </button>
-              </div>
-              <Toastify />
-              {localStorage.userId
-                ? (
-                  <div>
-                    <button
-                      onClick={() => auth.logOut()}
-                      type="submit"
-                      className="input-logOut"
-                    >
-                      {t('browserRouter.clickSignUp')}
-                    </button>
-                  </div>
-                )
-                : <div />}
-            </div>
-          </Nav.Link>
-        </Nav>
-      </Navbar>
+      <div className="container nav-container">
+        <div className="nav-link-title">
+          <Nav.Link as={Link} to={localStorage.userId ? '/' : '/login'}>{t('browserRouter.nameChat')}</Nav.Link>
+          <button type="button" className="nav-button focus-button" onClick={() => changeLanguage('en')}>
+            en
+          </button>
+          <button type="button" className="nav-button focus-button" onClick={() => changeLanguage('ru')}>
+            ru
+          </button>
+        </div>
+        <Toastify />
+        {localStorage.userId
+          ? (
+            <button
+              onClick={() => auth.logOut()}
+              type="submit"
+              className="input-logOut focus-button"
+            >
+              {t('browserRouter.clickSignUp')}
+            </button>
+          )
+          : ''}
+      </div>
       {modal.socketError && <div className="errorSocket">{t('errors.errNetwork')}</div>}
       <Routes>
         <Route path="/" element={localStorage.userId ? <Chat /> : <Navigate to="/login" />} />

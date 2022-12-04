@@ -55,32 +55,32 @@ const Login = () => {
             <img src={local} alt="изображение пользователя" className="local-image" />
           </div>
           <form className="form" onSubmit={formik.handleSubmit}>
-            <h1 className="form-titl">{t('login.logIn')}</h1>
-            <div className="form-container-usernam">
+            <h1 className="form-title">{t('login.logIn')}</h1>
+            <div className="form-container">
               <input
                 onChange={formik.handleChange}
                 name="username"
                 autoComplete="username"
                 required=""
-                placeholder={t('login.yuorNik')}
                 id="username"
-                className={cn('form-contro1', { 'is-invalid': authorization })}
+                className={cn('form-control', { 'is-invalid': authorization })}
                 value={formik.values.username}
                 ref={inputUsername}
               />
+              <label className="form-label" htmlFor="username">{t('login.yuorNik')}</label>
             </div>
-            <div className="form-container-password">
+            <div className="form-container">
               <input
                 onChange={formik.handleChange}
                 name="password"
                 autoComplete="currentPassword"
                 required=""
-                placeholder={t('login.password')}
                 type="password"
                 id="password"
-                className={cn('form-contro2', { 'is-invalid': authorization })}
+                className={cn('form-control', { 'is-invalid': authorization })}
                 value={formik.values.password}
               />
+              <label className="form-label" htmlFor="password">{t('login.password')}</label>
               {authorization && <p className="err">{t('errors.errPass')}</p>}
             </div>
             <button type="submit" className="button-primary">{t('login.logIn')}</button>

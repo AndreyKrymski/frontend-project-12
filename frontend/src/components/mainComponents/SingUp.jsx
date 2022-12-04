@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 import routes from '../../routes';
 import useAuth from '../../hooks/thisContext.js';
-import '../../style/SingUp.css';
 import imageSignUp from '../../images/signUp.jpg';
 
 const SingUp = () => {
@@ -76,7 +75,7 @@ const SingUp = () => {
                   />
                   <label className="form-label" htmlFor="username">{t('signUp.nameUser')}</label>
                   {
-                    props.touched.username && props.errors.username && <p className="errors1">{props.errors.username}</p>
+                    props.touched.username && props.errors.username && <p className="err">{props.errors.username}</p>
                   }
                 </div>
                 <div className="form-container">
@@ -93,7 +92,7 @@ const SingUp = () => {
                   />
                   <label className="form-label" htmlFor="password">{t('login.password')}</label>
                   {
-                    props.touched.password && props.errors.password && <p className="errors2">{props.errors.password}</p>
+                    props.touched.password && props.errors.password && <p className="err">{props.errors.password}</p>
                   }
                 </div>
                 <div className="form-container">
@@ -111,7 +110,7 @@ const SingUp = () => {
                   {
                     props.touched.confirmPassword
                     && props.errors.confirmPassword
-                    && <p className="errors3">{props.errors.confirmPassword}</p>
+                    && <p className="err">{props.errors.confirmPassword}</p>
                   }
                 </div>
                 {
