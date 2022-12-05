@@ -49,6 +49,7 @@ const Modal = () => {
               try {
                 const filterText = filteredStr(value.channelname);
                 emitSocket('newChannel', { name: filterText });
+                toast(t('toastify.newChannel'), typeSuccess);
                 dispatch(getShowModal(''));
               } catch (err) {
                 console.log(err);
@@ -67,7 +68,7 @@ const Modal = () => {
     const deleteChannel = (e) => {
       e.preventDefault();
       emitSocket('removeChannel', { id: Number(modal.idMiniModal) });
-      toast('Канал удалён', typeSuccess);
+      toast(t('toastify.removeChannel'), typeSuccess);
       dispatch(getShowModal(''));
       dispatch(getIdMiniModal(''));
     };

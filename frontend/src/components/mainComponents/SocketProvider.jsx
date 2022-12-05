@@ -2,26 +2,18 @@
 import React from 'react';
 import io from 'socket.io-client';
 import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
-import { useTranslation } from 'react-i18next';
 import {
   addChannel, addMessage, getActiveChannel, removeChannel, renameChannel,
 } from '../../slices/channelsSlice.js';
 import { getSocketError } from '../../slices/moduleSlice.js';
 import SocketContexts from '../../contexts/SocketContext.js';
 
-const typeSuccess = { type: 'success', autoClose: 2500 };
 const SocketProvider = ({ children }) => {
-  const { t } = useTranslation();
   let socket;
   let ws;
   const dispatch = useDispatch();
   const emitSocket = (type, param) => {
-    socket.emit(type, param, (status) => {
-      if (status && type !== 'newMessage') {
-        toast(t(`toastify.${type}`), typeSuccess);
-      }
-    });
+    socket.emit(type, param);
   };
 
   if (!socket) {
