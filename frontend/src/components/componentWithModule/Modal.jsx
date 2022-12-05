@@ -20,7 +20,6 @@ const Modal = () => {
   const { filteredStr } = useAuth();
   const { emitSocket } = useSocket();
   const name = Object.values(data.channels.map((item) => item.name));
-  const nameChanel = data.channels.filter((item) => item.id === Number(modal.idMiniModal))[0];
   const schema = yup.object().shape({
     channelname: yup.string().min(3, t('signUp.otTreefor')).max(20, t('signUp.otTreefor')).notOneOf([name], t('modal'))
       .required(t('signUp.reguire')),
@@ -98,7 +97,7 @@ const Modal = () => {
         <div className="modal-body">
           <Formik
             initialValues={{
-              channelname: nameChanel.name,
+              channelname: '',
             }}
             onSubmit={(value) => {
               const filterText = filteredStr(value.channelname);
