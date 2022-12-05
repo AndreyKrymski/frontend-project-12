@@ -52,7 +52,7 @@ export default {
     toastify: {
       newChannel: 'Канал создан',
       renameChannel: 'Канал переименован',
-      removeChannel: 'Канал удалён',
+      removeChannel: 'Канал удален',
     },
     errors: {
       errPass: 'Неверные имя пользователя или пароль',
