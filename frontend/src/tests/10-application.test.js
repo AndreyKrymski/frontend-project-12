@@ -113,7 +113,6 @@ test.describe('chat', () => {
     await input.fill('');
     await input.type('new test channel');
     await page.keyboard.press('Enter');
-
     await expect(await page.locator('text=Канал переименован')).toBeVisible();
     expect(await page.locator('text="# new test channel"')).not.toBeNull();
     // await expect(await page.$('text="# new test channel"')).not.toBeNull();
