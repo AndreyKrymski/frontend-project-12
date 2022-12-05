@@ -82,12 +82,12 @@ const Modal = () => {
               <div className="d-flex justify-content-end">
                 <button
                   type="button"
-                  className="me-2 btn btn-secondary btn-danger"
+                  className="me-2 btn btn-secondary"
                   onClick={() => dispatch(getShowModal(''))}
                 >
                   {t('buttonModal.cancel')}
                 </button>
-                <button type="submit" className="btn red btn-primary" disabled={modal.socketError}>{t('miniModal.delete')}</button>
+                <button type="submit" className="btn btn-danger red btn-primary" disabled={modal.socketError}>{t('miniModal.delete')}</button>
               </div>
             </div>
           </form>
