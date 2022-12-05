@@ -12,15 +12,17 @@ const ButtonModal = ({ props, inputRef }) => {
     <form className="">
       <div>
         <div>
-          <label className="form-label" htmlFor="channelname">{t('modalHeader.nameChannel')}</label>
-          <input
-            onChange={props.handleChange}
-            value={props.values.channelname}
-            ref={inputRef}
-            name="channelname"
-            id="channelname"
-            className={cn('inmput-modal', 'form-control', { 'is-invalid': props.errors.channelname })}
-          />
+          <label className="examp" htmlFor="channelname">
+            {t('modalHeader.nameChannel')}
+            <input
+              onChange={props.handleChange}
+              value={props.values.channelname}
+              ref={inputRef}
+              name="channelname"
+              id="channelname"
+              className={cn('inmput-modal', 'form-control', { 'is-invalid': props.errors.channelname })}
+            />
+          </label>
           {
             props.errors.channelname && <div className="error invalid-feedback">{props.errors.channelname}</div>
           }
