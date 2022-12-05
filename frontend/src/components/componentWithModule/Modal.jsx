@@ -79,7 +79,7 @@ const Modal = () => {
               <div className="d-flex justify-content-end">
                 <button
                   type="button"
-                  className="me-2 btn btn-secondary"
+                  className="me-2 btn btn-secondary btn-danger"
                   onClick={() => dispatch(getShowModal(''))}
                 >
                   {t('buttonModal.cancel')}
