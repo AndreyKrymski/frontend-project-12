@@ -22,7 +22,7 @@ const MiniButton = ({ idButton }) => {
         aria-expanded="true"
         className={cn('dropdown-toggle-split', { 'btn-str': idButton === data.currentChannelId })}
       >
-        1
+        <span className="form-label">Управление каналом</span>
       </button>
       {active && <MiniModal getActive={getActive} />}
     </>

@@ -43,6 +43,7 @@ export default {
     modal: 'Must be unique',
     question: 'Sure?',
     modalHeader: {
+      nameChannel: 'Name channel',
       newChannels: 'Add channel',
       removeChannels: 'Delete channel',
       renameChannels: 'Rename channel',

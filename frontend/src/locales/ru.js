@@ -44,6 +44,7 @@ export default {
     modal: 'Должно быть уникальным',
     question: 'Уверены?',
     modalHeader: {
+      nameChannel: 'Имя канала',
       newChannels: 'Добавить канал',
       removeChannels: 'Удалить канал',
       renameChannels: 'Переименовать канал',

@@ -66,6 +66,7 @@ const SingUp = () => {
                     name="username"
                     id="username"
                     autoComplete="username"
+                    placeholder={t('signUp.nameUser')}
                     required=""
                     className={cn('form-control', { 'is-invalid': (props.touched.username && props.errors.username) || authorization })}
                     onChange={props.handleChange}
@@ -84,6 +85,7 @@ const SingUp = () => {
                     autoComplete="password"
                     type="password"
                     id="password"
+                    placeholder={t('login.password')}
                     required=""
                     className={cn('form-control', { 'is-invalid': (props.touched.password && props.errors.password) || authorization })}
                     onChange={props.handleChange}
@@ -100,6 +102,7 @@ const SingUp = () => {
                     name="confirmPassword"
                     type="password"
                     autoComplete="confirmPassword"
+                    placeholder={t('signUp.passwordPass')}
                     id="confirmPassword"
                     className={cn('form-control', { 'is-invalid': (props.touched.confirmPassword && props.errors.confirmPassword) || authorization })}
                     onChange={props.handleChange}

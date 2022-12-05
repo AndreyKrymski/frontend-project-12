@@ -38,7 +38,9 @@ const MessageInput = () => {
             value={value}
             ref={inputRef}
           />
-          <button type="submit" disabled="" className="btn-vertical">1</button>
+          <button type="submit" disabled="" className="btn-vertical">
+            <span className="form-label">Отправить</span>
+          </button>
         </div>
       </form>
     </div>

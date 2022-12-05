@@ -11,7 +11,7 @@ const ButtonModal = ({ props, inputRef }) => {
   return (
     <form className="">
       <div>
-        <label className="visually-hidden" htmlFor="channelname">
+        <div>
           <input
             onChange={props.handleChange}
             value={props.values.channelname}
@@ -20,10 +20,11 @@ const ButtonModal = ({ props, inputRef }) => {
             id="channelname"
             className={cn('inmput-modal', 'form-control', { 'is-invalid': props.errors.channelname })}
           />
-        </label>
-        {
-          props.errors.channelname && <div className="error invalid-feedback">{props.errors.channelname}</div>
-        }
+          <label className="form-label" htmlFor="channelname">{t('modalHeader.nameChannel')}</label>
+          {
+            props.errors.channelname && <div className="error invalid-feedback">{props.errors.channelname}</div>
+          }
+        </div>
         <div className="d-flex justify-content-end">
           <button
             type="button"
