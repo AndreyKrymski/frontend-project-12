@@ -67,6 +67,7 @@ const Modal = () => {
     const deleteChannel = (e) => {
       e.preventDefault();
       emitSocket('removeChannel', { id: Number(modal.idMiniModal) });
+      toast(t('toastify.removeChannel'), typeSuccess);
       dispatch(getShowModal(''));
       dispatch(getIdMiniModal(''));
     };
