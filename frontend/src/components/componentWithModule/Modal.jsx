@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import { getShowModal, getIdMiniModal } from '../../slices/moduleSlice.js';
 import ModalDialog from './ModalDialog.jsx';
 import ModalHeader from './ModalHeader.jsx';
@@ -12,6 +13,7 @@ import useSocket from '../../hooks/useSocket.js';
 import '../../style/Modal.css';
 
 const Modal = () => {
+  const typeSuccess = { type: 'success', autoClose: 2500 };
   const { t } = useTranslation();
   const data = useSelector((state) => state.channels);
   const modal = useSelector((state) => state.module);
@@ -102,6 +104,7 @@ const Modal = () => {
             onSubmit={(value) => {
               const filterText = filteredStr(value.channelname);
               emitSocket('renameChannel', { id: Number(modal.idMiniModal), name: filterText });
+              toast(t('toastify.renameChannel'), typeSuccess);
               dispatch(getIdMiniModal(''));
               dispatch(getShowModal(''));
             }}
