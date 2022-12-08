@@ -21,9 +21,11 @@ const SocketProvider = ({ children }) => {
     socket.on('connect', () => {
       dispatch(getSocketError(false));
     });
+
     socket.io.on('error', () => {
       dispatch(getSocketError(true));
     });
+
     socket.on('newMessage', (payload) => {
       dispatch(addMessage(payload));
     });
